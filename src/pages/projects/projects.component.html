@@ -1,0 +1,22 @@
+<div class="max-w-3xl mx-auto">
+  <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl text-center mb-12">Research & Projects</h1>
+  <div class="space-y-12">
+    @for (project of projects; track project.title) {
+      <div class="group relative block p-8 border border-gray-700/50 rounded-3xl bg-gray-900/50 transition-all duration-300 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-900/40 transform hover:-translate-y-2">
+        <div class="relative z-10">
+          <h2 class="text-2xl font-bold text-blue-400">{{ project.title }}</h2>
+          <p class="mt-2 text-gray-300">{{ project.description }}</p>
+          @if (project.link) {
+            <a [href]="project.link" target="_blank" class="inline-block mt-4 text-sm font-semibold text-white bg-blue-600/50 hover:bg-blue-600 px-4 py-2 rounded-lg transition-colors">
+              View Project &rarr;
+            </a>
+          }
+        </div>
+        <div class="absolute inset-0 overflow-hidden rounded-3xl z-0">
+            <img [src]="project.imageUrl" [alt]="project.title" class="absolute inset-0 w-full h-full object-cover transition-all duration-500 opacity-0 group-hover:opacity-20 transform group-hover:scale-110">
+            <div class="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-0 group-hover:opacity-100"></div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
