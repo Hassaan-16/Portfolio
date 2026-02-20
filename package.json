@@ -3,18 +3,18 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@angular/build": "^21.1.0",
+    "@angular/cli": "^21.1.0",
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
+    "@angular/compiler-cli": "^21.1.0",
     "@angular/core": "^21.1.0",
     "@angular/platform-browser": "^21.1.0",
     "@angular/router": "^21.1.5",
     "rxjs": "^7.8.2",
-    "@angular/build": "^21.1.0",
-    "@angular/cli": "^21.1.0",
-    "@angular/compiler-cli": "^21.1.0",
     "tailwindcss": "latest"
   },
   "devDependencies": {
-    "typescript": "5.8.3"
+    "typescript": "~5.9.0"
   }
 }
