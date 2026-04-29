@@ -1,20 +1,92 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Portfolio
 
-# Run and deploy your AI Studio app
+Muhammad Hassaan Bin Saqib's personal portfolio website built with Angular.
 
-This contains everything you need to run your app locally.
+## Prerequisites
 
-View your app in AI Studio: https://ai.studio/apps/drive/1BHh64TaOkRyB5UXoji-2oUVL5Qf0Wbpb
+- **Node.js** (v18 or later recommended)
+- **npm** (comes with Node.js)
 
-## Run Locally
+## Dependencies
 
-**Prerequisites:**  Node.js
+### Core Framework
+| Package | Version |
+|---------|---------|
+| @angular/core | 21.2.0 |
+| @angular/common | 21.2.0 |
+| @angular/compiler | 21.2.0 |
+| @angular/platform-browser | 21.2.0 |
+| @angular/platform-browser-dynamic | 21.2.0 |
+| @angular/router | 21.2.0 |
+| @angular/forms | 21.2.0 |
+| @angular/animations | 21.2.0 |
 
+### Build & Dev Tools
+| Package | Version |
+|---------|---------|
+| @angular-devkit/build-angular | ^21.2.0 |
+| @angular/build | ^21.2.0 |
+| @angular/cli | ^21.2.0 |
+| @angular/compiler-cli | 21.2.0 |
+| typescript | ~5.9.0 |
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Utilities
+| Package | Version | Purpose |
+|---------|---------|---------|
+| rxjs | ^7.8.2 | Reactive programming |
+| zone.js | ~0.15.0 | Angular change detection |
+| tslib | ^2.6.2 | TypeScript helper functions |
+| motion | ^12.38.0 | Animations |
+| tailwindcss | CDN | Utility-first CSS framework |
+
+## Getting Started
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Run the development server
+
+```bash
+npm run dev
+```
+
+or
+
+```bash
+npm start
+```
+
+The app will be available at `http://localhost:4200`.
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm start` | Start development server (alias) |
+| `npm run build` | Build for production |
+| `npm run watch` | Build with watch mode for development |
+| `npm test` | Run unit tests |
+| `npm run ng` | Run Angular CLI commands |
+
+## Project Structure
+
+```
+src/
+  ├── components/       # Reusable UI components
+  │   ├── navbar/       # Navigation dock
+  │   └── footer/       # Site footer
+  ├── pages/            # Page components
+  │   ├── home/         # Landing page
+  │   ├── career/       # Career & education timeline
+  │   ├── credentials/  # Certifications, skills, badges
+  │   ├── projects/     # Research & projects showcase
+  │   └── contact/      # Contact information
+  ├── app.component.ts  # Root component
+  ├── app.routes.ts     # Route configuration
+  ├── styles.css        # Global styles
+  └── index.html        # Entry HTML file
+```

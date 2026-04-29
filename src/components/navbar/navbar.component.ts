@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, signal, ElementRef, viewChildren } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -7,15 +7,17 @@ interface NavLink {
   label: string;
   icon: string;
 }
-
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
+  standalone: true,
   imports: [RouterLink, RouterLinkActive, CommonModule],
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'], // <--- ADD THIS LINE
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent {
   isMenuOpen = signal(false);
+  mouseX = signal<number | null>(null);
 
   navLinks: NavLink[] = [
     { path: '/projects', label: 'Projects', icon: 'M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 11.25h6M9 15.75h6' },
@@ -24,6 +26,33 @@ export class NavbarComponent {
     { path: '/credentials', label: 'Credentials', icon: 'M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.286zm0 13.036h.008v.016h-.008v-.016z' },
     { path: '/contact', label: 'Contact', icon: 'M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75' },
   ];
+
+  // Mouse Tracking Logic
+  onMouseMove(event: MouseEvent) {
+    this.mouseX.set(event.pageX);
+  }
+
+  onMouseLeave() {
+    this.mouseX.set(null);
+  }
+
+  // Magnification Calculation
+  getScale(el: HTMLElement): string {
+    const x = this.mouseX();
+    if (x === null) return '1';
+
+    const rect = el.getBoundingClientRect();
+    const center = rect.left + rect.width / 2;
+    const distance = Math.abs(x - center);
+    
+    const proximity = 150; // Proximity in pixels where scaling starts
+    if (distance < proximity) {
+      // Scale between 1.0 and 1.5
+      const scale = 1 + (0.5 * (1 - distance / proximity));
+      return scale.toFixed(2);
+    }
+    return '1';
+  }
 
   toggleMenu() {
     this.isMenuOpen.update(value => !value);
